@@ -9,7 +9,7 @@ export default function useNewsData(category, searchTerm) {
     async function fetchNewsData() {
       try {
         setLoading(true);
-        const apiKey = "pub_52396eb67dd49ca9dbd733e09e90e6f01325e";  // Your API key
+        const apiKey = "pub_52396eb67dd49ca9dbd733e09e90e6f01325e";  
         const baseUrl = `https://newsdata.io/api/1/latest?apikey=${apiKey}`;
 
         const categoryParam = category ? `&category=${category}` : "";

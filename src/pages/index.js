@@ -40,9 +40,9 @@ export default function Home() {
           <Navbar.Collapse id="navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/bookmarks">Bookmarks</Nav.Link> {/* New Link to Bookmarks */}
+              <Nav.Link href="/bookmarks">Bookmarks</Nav.Link>
             </Nav>
-            <Dropdown>
+            <Dropdown className="ms-auto">
               <Dropdown.Toggle variant="outline-primary">
                 Categories
               </Dropdown.Toggle>
@@ -62,10 +62,10 @@ export default function Home() {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Form onSubmit={handleSearch} className="d-flex">
+            <Form onSubmit={handleSearch} className="d-flex ms-auto">
               <FormControl
                 type="text"
-                placeholder="search"
+                placeholder="Search"
                 className="me-2"
                 name="search"
               />
@@ -78,7 +78,7 @@ export default function Home() {
       </Navbar>
       <Container>
         <Row>
-          <Col xs={12} md={3}>
+          <Col xs={12} md={3} className="order-md-1 order-2 mb-4">
             <h5>Categories</h5>
             <Nav className="flex-column">
               <Nav.Link onClick={() => handleCategoryClick("world")}>
@@ -95,7 +95,7 @@ export default function Home() {
               </Nav.Link>
             </Nav>
           </Col>
-          <Col xs={12} md={9}>
+          <Col xs={12} md={9} className="order-md-2 order-1">
             <NewsList category={category} searchTerm={searchTerm} />
           </Col>
         </Row>

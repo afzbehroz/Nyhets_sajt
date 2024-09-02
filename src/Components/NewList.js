@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import Link from "next/link";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { useBookmarks } from '../context/BookmarkContext';
+import { useBookmarks } from "../context/BookmarkContext";
 
 export default function NewsList(props) {
   const { category, searchTerm } = props;
@@ -58,19 +58,29 @@ export default function NewsList(props) {
                   </Card.Title>
                   <Card.Text>{article.description}</Card.Text>
                   <div className="d-flex justify-content-between align-items-center">
-                    <Button 
-                      variant={isBookmarked(article.article_id) ? "primary" : "outline-primary"} 
-                      size="sm" 
+                    <Button
+                      variant={
+                        isBookmarked(article.article_id)
+                          ? "primary"
+                          : "outline-primary"
+                      }
+                      size="sm"
                       className="px-2 py-1"
                       onClick={() => handleBookmarkToggle(article)}
-                      style={{ minWidth: '75px' }}> {/* Made the button slightly smaller */}
-                      {isBookmarked(article.article_id) ? "Bookmarked" : "Bookmark"}
+                      style={{ minWidth: "75px" }}
+                    >
+                      {" "}
+                      {isBookmarked(article.article_id)
+                        ? "Bookmarked"
+                        : "Bookmark"}
                     </Button>
-                    <Card.Link 
-                      href={article.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="ms-3"> {/* Margin added to the right */}
+                    <Card.Link
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ms-3"
+                    >
+                      {" "}
                       Read Full Article
                     </Card.Link>
                   </div>
