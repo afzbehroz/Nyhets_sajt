@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { useBookmarks } from '../context/BookmarkContext';
 
 export default function NewsList(props) {
   const { category, searchTerm } = props;
   const [news, setNews] = useState([]);
+  const { bookmarks, addBookmark, removeBookmark } = useBookmarks();
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -26,13 +28,25 @@ export default function NewsList(props) {
     fetchNews();
   }, [category, searchTerm]);
 
+  const handleBookmarkToggle = (article) => {
+    if (isBookmarked(article.article_id)) {
+      removeBookmark(article.article_id);
+    } else {
+      addBookmark(article);
+    }
+  };
+
+  const isBookmarked = (articleId) => {
+    return bookmarks.some((article) => article.article_id === articleId);
+  };
+
   return (
     <Container>
       <Row>
         {news && news.length > 0 ? (
           news.map((article, index) => (
             <Col xs={12} md={6} lg={4} key={index}>
-              <Card>
+              <Card className="mb-4">
                 {article.image_url && (
                   <Card.Img src={article.image_url} variant="top" />
                 )}
@@ -43,9 +57,23 @@ export default function NewsList(props) {
                     </Link>
                   </Card.Title>
                   <Card.Text>{article.description}</Card.Text>
-                  <Card.Link href={article.link} target="_blank" rel="noopener noreferrer">
-                    Read Full Article
-                  </Card.Link>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <Button 
+                      variant={isBookmarked(article.article_id) ? "primary" : "outline-primary"} 
+                      size="sm" 
+                      className="px-2 py-1"
+                      onClick={() => handleBookmarkToggle(article)}
+                      style={{ minWidth: '75px' }}> {/* Made the button slightly smaller */}
+                      {isBookmarked(article.article_id) ? "Bookmarked" : "Bookmark"}
+                    </Button>
+                    <Card.Link 
+                      href={article.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="ms-3"> {/* Margin added to the right */}
+                      Read Full Article
+                    </Card.Link>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>

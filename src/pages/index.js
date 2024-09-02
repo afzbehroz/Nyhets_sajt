@@ -1,6 +1,5 @@
 import NewsList from "@/Components/NewList";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Row,
@@ -12,7 +11,6 @@ import {
   FormControl,
   Button,
   Dropdown,
-  NavbarBrand,
 } from "react-bootstrap";
 import styles from "@/styles/Home.module.css";
 
@@ -40,7 +38,10 @@ export default function Home() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto"></Nav>
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/bookmarks">Bookmarks</Nav.Link> {/* New Link to Bookmarks */}
+            </Nav>
             <Dropdown>
               <Dropdown.Toggle variant="outline-primary">
                 Categories
